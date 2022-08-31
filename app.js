@@ -70,38 +70,20 @@ function drawPackages(packages) {
 }
 
 function heavyFilter() {
-  // NOTE this function is a copy of above function is technically
-  //  not necessary a package argument is all that is needed to be put through drawPackages(packages) function
-  // and this runs exactly as functions below
-  let heavyTable = document.getElementById("table");
   let heavyPackages = packages.filter((package) => package.weight >= 5);
-  let template = ``;
-  heavyPackages.forEach((package) => {
-    template += `<tr>
-              <th scope="row">${package.to}</th>
-              <td>${package.trackingNumber}</td>
-              <td>${package.priorityLevel}</td>
-              <td>${package.weight}</td>
-              <td>${package.isFragile}</td>
-            </tr>`;
-  });
-  // @ts-ignore
-  heavyTable.innerHTML = template;
+  drawPackages(heavyPackages);
 }
 
 function fragileFilter() {
-  
   let fragilePackages = packages.filter((package) => package.isFragile);
-  drawPackages(fragilePackages)
+  drawPackages(fragilePackages);
 }
 
 function priorityFilter() {
-  let priorityPack = packages.filter((package) => package.priorityLevel == "true"
+  let priorityPack = packages.filter(
+    (package) => package.priorityLevel == "true"
   );
   drawPackages(priorityPack);
-}
-function drawAllPackages() {
-  drawPackages(packages);
 }
 
 drawPackages(packages);
